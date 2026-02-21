@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aamir Shaikh | Senior Front-End Developer</title>
+    
+    <script>
+        const theme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Hero Section Pro -->
+        <section class="section-padding d-flex align-items-center" style="min-height: 100vh; padding-top: 120px;">
+            <div class="container-standard">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7" data-aos="fade-up">
+                        <div class="badge-tech mb-3">Available for New Projects</div>
+                        <h1 class="mb-4">Building <span style="color: var(--primary)">Performant</span> Digital Solutions with Precision.</h1>
+                        <p class="fs-lg mb-5" style="max-width: 600px;">Senior Front-End Developer specializing in high-scale web applications, design systems, and pixel-perfect UI/UX implementation.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="contact.html" class="btn-pro btn-primary">Let's Talk <i class="fas fa-arrow-right"></i></a>
+                            <a href="portfolio.html" class="btn-pro btn-outline">Explore My Work</a>
+                        </div>
+                        <div class="mt-5 d-flex align-items-center gap-4 opacity-50">
+                            <i class="fab fa-html5 fa-2x"></i>
+                            <i class="fab fa-css3-alt fa-2x"></i>
+                            <i class="fab fa-js fa-2x"></i>
+                            <i class="fab fa-react fa-2x"></i>
+                            <i class="fab fa-bootstrap fa-2x"></i>
+                            <i class="fab fa-git-alt fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="position-relative">
+                            <div style="position: absolute; inset: -20px; background: var(--primary); opacity: 0.1; filter: blur(60px); border-radius: 50%;"></div>
+                            <img src="assets/img/image1.png" alt="Aamir Shaikh" class="img-fluid rounded-4 shadow-lg position-relative" style="z-index: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Grid -->
+        <section class="section-padding" style="background: var(--surface-muted)">
+            <div class="container-standard">
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="card-pro p-4 text-center">
+                            <h2 style="color: var(--primary)">50+</h2>
+                            <p class="small fw-bold text-main mb-0">Projects Delivered</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-pro p-4 text-center">
+                            <h2 style="color: var(--primary)">99%</h2>
+                            <p class="small fw-bold text-main mb-0">Client Satisfaction</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-pro p-4 text-center">
+                            <h2 style="color: var(--primary)">300ms</h2>
+                            <p class="small fw-bold text-main mb-0">Avg. Load Time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Pro -->
+        <section class="section-padding">
+            <div class="container-standard">
+                <div class="d-flex justify-content-between align-items-end mb-5">
+                    <div>
+                        <h2 class="mb-2">Selected Works</h2>
+                        <p>A showcase of my recent technical achievements.</p>
+                    </div>
+                    <a href="portfolio.html" class="btn-pro btn-outline">View All Projects</a>
+                </div>
+                <div class="row g-4" id="recent-projects-container">
+                    <!-- Dynamic Content via main.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Pro -->
+        <section class="section-padding" style="background: var(--surface-muted)">
+            <div class="container-standard">
+                <div class="text-center mb-5">
+                    <h2 class="mb-2">Client Feedback</h2>
+                    <p>What industry professionals say about my work.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4" data-aos="fade-up">
+                        <div class="card-pro p-5">
+                            <div class="d-flex gap-1 text-warning mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="italic mb-4">"Aamir is an exceptional talent. His attention to detail in UI implementation is truly world-class."</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://via.placeholder.com/48" class="rounded-circle" alt="Client">
+                                <div>
+                                    <h6 class="fw-bold mb-0">Sarah Jenkins</h6>
+                                    <small>Product Manager, TechStream</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more testimonials similarly -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const featuredProjects = [
+                {
+                    title: "Ultimate JS Engine",
+                    description: "High-performance JavaScript carousel engine with zero dependencies and hardware-accelerated animations.",
+                    techStack: ["JS ES6+", "CSS3", "DOM"],
+                    thumbnail: "assets/img/project/Project-01.png",
+                    liveUrl: "https://pr-6-the-ultimate-javascript-carous.vercel.app/",
+                    sourceUrl: "https://github.com/Dev-Shivam-05/The_Ultimate_JavaScript/tree/main/Project/PR-6-The-Ultimate-JavaScript"
+                },
+                {
+                    title: "Intelligence Pulse",
+                    description: "Real-time global intelligence dashboard utilizing advanced data visualization for global trends.",
+                    techStack: ["API", "DataViz", "Chart.js"],
+                    thumbnail: "assets/img/project/Project-02.png",
+                    liveUrl: "https://covid-stats-india-ten.vercel.app/",
+                    sourceUrl: "https://github.com/Aamir097"
+                },
+                {
+                    title: "Corporate UX Core",
+                    description: "Enterprise-grade design system and landing page architecture for corporate scalability.",
+                    techStack: ["Bootstrap 5", "Design Ops"],
+                    thumbnail: "assets/img/project/Project-03.png",
+                    liveUrl: "https://github.com/Aamir097/PR-Charles-Business",
+                    sourceUrl: "https://github.com/Aamir097/PR-Charles-Business"
+                }
+            ];
+            if (typeof renderProjects === 'function') {
+                renderProjects('recent-projects-container', featuredProjects);
+            }
+        });
+    </script>
+</body>
+</html>

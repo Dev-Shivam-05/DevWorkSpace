@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Aamir Shaikh</title>
+    
+    <script>
+        const theme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="section-padding pt-5 mt-5">
+        <div class="container-standard">
+            <div class="mb-5" data-aos="fade-up">
+                <h1 class="mb-2">Portfolio</h1>
+                <p class="fs-lg">A curated selection of technical projects demonstrating expertise in scalability and UI excellence.</p>
+            </div>
+
+            <div class="row g-4" id="portfolio-container">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = [
+                {
+                    title: "Ultimate JS Engine",
+                    description: "High-performance JavaScript carousel engine with zero dependencies and hardware-accelerated animations. Optimized for 60fps performance on mobile devices.",
+                    techStack: ["JS ES6+", "CSS3", "Performance"],
+                    thumbnail: "assets/img/project/Project-01.png",
+                    liveUrl: "https://pr-6-the-ultimate-javascript-carous.vercel.app/",
+                    sourceUrl: "https://github.com/Dev-Shivam-05/The_Ultimate_JavaScript/tree/main/Project/PR-6-The-Ultimate-JavaScript"
+                },
+                {
+                    title: "Intelligence Pulse",
+                    description: "Real-time global intelligence dashboard utilizing advanced data visualization for global trends. Features responsive data grids and dynamic charting.",
+                    techStack: ["API", "DataViz", "Chart.js"],
+                    thumbnail: "assets/img/project/Project-02.png",
+                    liveUrl: "https://covid-stats-india-ten.vercel.app/",
+                    sourceUrl: "https://github.com/Aamir097"
+                },
+                {
+                    title: "Corporate UX Core",
+                    description: "Enterprise-grade design system and landing page architecture for corporate scalability. Focuses on accessibility and consistent brand identity.",
+                    techStack: ["Bootstrap 5", "UI Architecture"],
+                    thumbnail: "assets/img/project/Project-03.png",
+                    liveUrl: "https://github.com/Aamir097/PR-Charles-Business",
+                    sourceUrl: "https://github.com/Aamir097/PR-Charles-Business"
+                },
+                {
+                    title: "Refreshment Digital Hub",
+                    description: "End-to-end digital menu and ordering interface for high-traffic food outlets. Integrated with real-time availability tracking.",
+                    techStack: ["HTML5", "CSS3", "Bootstrap"],
+                    thumbnail: "assets/img/project/Project-04.png",
+                    liveUrl: "https://github.com/Aamir097/PR-Tea-Shop",
+                    sourceUrl: "https://github.com/Aamir097/PR-Tea-Shop"
+                },
+                {
+                    title: "Premium Hospitality UI",
+                    description: "Luxury restaurant reservation and menu system featuring immersive imagery and seamless UX flow for table bookings.",
+                    techStack: ["Vanilla JS", "RWD", "UX"],
+                    thumbnail: "assets/img/project/Project-05.png",
+                    liveUrl: "https://github.com/Aamir097/PR--Earls",
+                    sourceUrl: "https://github.com/Aamir097/PR--Earls"
+                }
+            ];
+            if (typeof renderProjects === 'function') {
+                renderProjects('portfolio-container', projects);
+            }
+        });
+    </script>
+</body>
+</html>

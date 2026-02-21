@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Aamir Shaikh</title>
+    
+    <script>
+        const theme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="section-padding pt-5 mt-5">
+        <div class="container-medium">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">My Services</h2>
+                <p class="text-secondary">Comprehensive digital solutions for your business</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 p-5">
+                        <i class="fas fa-laptop-code fa-3x text-primary mb-4"></i>
+                        <h4 class="fw-bold h5">Web Development</h4>
+                        <p class="text-secondary small">Custom websites built with modern frameworks and optimized for performance.</p>
+                        <ul class="list-unstyled mt-3 text-secondary small">
+                            <li><i class="fas fa-check text-primary me-2"></i> Custom HTML/CSS/JS</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Single Page Apps</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Performance Tuning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 p-5">
+                        <i class="fas fa-mobile-alt fa-3x text-secondary mb-4"></i>
+                        <h4 class="fw-bold h5">Responsive Design</h4>
+                        <p class="text-secondary small">Ensuring your digital presence is accessible on any device.</p>
+                        <ul class="list-unstyled mt-3 text-secondary small">
+                            <li><i class="fas fa-check text-secondary me-2"></i> Mobile-First Approach</li>
+                            <li><i class="fas fa-check text-secondary me-2"></i> Fluid Grid Layouts</li>
+                            <li><i class="fas fa-check text-secondary me-2"></i> Cross-Device Testing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 p-5">
+                        <i class="fas fa-search-plus fa-3x text-accent mb-4"></i>
+                        <h4 class="fw-bold h5">SEO Optimization</h4>
+                        <p class="text-secondary small">Improving search visibility and driving organic traffic to your site.</p>
+                        <ul class="list-unstyled mt-3 text-secondary small">
+                            <li><i class="fas fa-check text-accent me-2"></i> Meta Data Strategy</li>
+                            <li><i class="fas fa-check text-accent me-2"></i> Keyword Analysis</li>
+                            <li><i class="fas fa-check text-accent me-2"></i> Sitemap Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

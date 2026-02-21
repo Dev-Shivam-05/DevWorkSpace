@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Aamir Shaikh</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">AAMIR ADMIN</a>
+            <div class="ms-auto">
+                <a href="index.html" class="btn btn-outline-light btn-sm">View Site</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm p-3 mb-3">
+                    <h6 class="text-muted mb-2">Total Submissions</h6>
+                    <h2 class="fw-bold mb-0" id="total-count">0</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm p-3 mb-3">
+                    <h6 class="text-muted mb-2">New Leads (24h)</h6>
+                    <h2 class="fw-bold mb-0">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">Form Submissions</h4>
+                    <button class="btn btn-success btn-sm" id="export-all">Export All to Excel</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submission-list">
+                            <!-- Submissions will be injected here -->
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">No submissions found.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple Admin Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Normally this would fetch from Firebase
+            const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+            const list = document.getElementById('submission-list');
+            const count = document.getElementById('total-count');
+
+            count.textContent = submissions.length;
+
+            if (submissions.length > 0) {
+                list.innerHTML = '';
+                submissions.forEach((sub, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${sub.timestamp}</td>
+                        <td class="fw-bold">${sub.name}</td>
+                        <td>${sub.email}</td>
+                        <td><span class="badge bg-info">${sub.subject}</span></td>
+                        <td><span class="badge bg-success">Received</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewDetails(${index})">View</button>
+                        </td>
+                    `;
+                    list.appendChild(tr);
+                });
+            }
+        });
+
+        function viewDetails(index) {
+            const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+            const sub = submissions[index];
+            alert(`
+                Name: ${sub.name}
+                Email: ${sub.email}
+                Phone: ${sub.phone}
+                Message: ${sub.message}
+            `);
+        }
+    </script>
+</body>
+</html>

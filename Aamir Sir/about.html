@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Aamir Shaikh</title>
+    
+    <script>
+        const theme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="section-padding pt-5 mt-5">
+        <div class="container-standard">
+            <!-- Professional Profile -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <img src="assets/img/image2.png" alt="Aamir Shaikh" class="img-fluid rounded-4 shadow-lg">
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <h1 class="mb-4">Crafting High-Scale Digital Experiences.</h1>
+                    <p class="fs-lg text-main mb-4">I am Aamir Shaikh, a Junior Front-End Developer dedicated to the intersection of code and user-centric design. With a focus on performance, scalability, and accessibility, I build web applications that drive real business value.</p>
+                    <p class="text-muted mb-5">My background in high-pressure operational environments (Airport Ground Staff) has instilled a unique discipline and problem-solving mindset that I bring to every technical challenge.</p>
+                    
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <h6 class="fw-bold text-primary mb-1">1+ Years</h6>
+                            <p class="small text-muted mb-0">Experience</p>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="fw-bold text-primary mb-1">50+ Projects</h6>
+                            <p class="small text-muted mb-0">Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Timeline -->
+            <section class="mt-5 pt-5">
+                <h2 class="mb-5 text-center">Professional Journey</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <div class="card-pro p-4 h-100">
+                            <div class="badge-tech mb-3">2019 - Present</div>
+                            <h4 class="h5 mb-2">Senior Front-End Developer</h4>
+                            <p class="small text-primary mb-3">Freelance / Digital Agency</p>
+                            <p class="small">Leading front-end architecture for multi-tenant SaaS platforms and high-traffic E-commerce sites. Specialized in React, Vue, and modern CSS frameworks.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-pro p-4 h-100">
+                            <div class="badge-tech mb-3">2015 - 2019</div>
+                            <h4 class="h5 mb-2">Airport Ground Operations</h4>
+                            <p class="small text-primary mb-3">Aviation Services</p>
+                            <p class="small">Managed passenger coordination and operational efficiency in high-pressure environments. Developed core soft skills in leadership and rapid problem-solving.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education & Certifications -->
+            <section class="mt-5 pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="mb-4">Education</h2>
+                        <div class="card-pro p-4 mb-3">
+                            <h5 class="mb-1">Bachelor of Computer Applications (B.C.A.)</h5>
+                            <p class="small text-muted">Veer Narmad South Gujarat University (VNSGU) | 2019</p>
+                        </div>
+                        <div class="card-pro p-4">
+                            <h5 class="mb-1">Higher Secondary Certificate (HSC)</h5>
+                            <p class="small text-muted">Gujarat Board | 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <h2 class="mb-4">Certifications</h2>
+                        <div class="card-pro p-4 mb-3">
+                            <h5 class="mb-1">Full-Stack Development Expert</h5>
+                            <p class="small text-muted">Industry Certified Training | 2024</p>
+                        </div>
+                        <div class="card-pro p-4">
+                            <h5 class="mb-1">Advanced UI/UX Design Systems</h5>
+                            <p class="small text-muted">Professional Design Workshop | 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Aamir Shaikh</title>
+    
+    <script>
+        const theme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="section-padding pt-5 mt-5">
+        <div class="container-md">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">Insights & Articles</h2>
+                <p class="text-secondary">Sharing thoughts on web development and UI/UX design</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card mb-4 overflow-hidden" data-aos="fade-up">
+                        <img src="assets/img/blog-1.webp" class="card-img-top img-responsive" alt="Modern Web Trends" loading="lazy">
+                        <div class="card-body p-4">
+                            <span class="badge bg-light text-primary mb-2">Development</span>
+                            <h3 class="h4 fw-bold mb-3">Top Web Trends in 2026</h3>
+                            <p class="text-secondary mb-4">Exploring the future of front-end development, from AI-driven UI to the evolution of PWAs. Stay ahead of the curve with these essential insights.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Read Detailed Article</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <aside class="sticky-top" style="top: 100px;">
+                        <div class="card p-4 mb-4" data-aos="fade-left">
+                            <h5 class="fw-bold mb-3">Search</h5>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search articles...">
+                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="card p-4" data-aos="fade-left" data-aos-delay="100">
+                            <h5 class="fw-bold mb-3">Categories</h5>
+                            <ul class="list-unstyled mb-0 text-secondary small">
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Web Development (12)</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">UI/UX Design (8)</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">JavaScript (5)</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
