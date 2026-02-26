@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Growth Schedule</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f9fc;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+      }
+      header {
+        background: linear-gradient(135deg, #6e48aa, #9d50bb);
+        color: white;
+        padding: 25px;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+      .tabs {
+        display: flex;
+        background: #f0e6ff;
+        padding: 0;
+        margin: 0;
+      }
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 15px 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border-bottom: 3px solid transparent;
+      }
+      .tab.active {
+        background: white;
+        border-bottom: 3px solid #9d50bb;
+        color: #6e48aa;
+      }
+      .tab-content {
+        display: none;
+        padding: 25px;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .event {
+        padding: 12px 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      }
+      .add-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      .add-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Color Coding */
+      .worship {
+        background: #ff6b6b;
+      }
+      .morning {
+        background: #ffa06b;
+      }
+      .meal {
+        background: #48db8a;
+      }
+      .coding {
+        background: #54a0ff;
+      }
+      .class {
+        background: #5f27cd;
+      }
+      .nap {
+        background: #c8d6e5;
+      }
+      .learn {
+        background: #feca57;
+      }
+      .workout {
+        background: #ff9ff3;
+      }
+      .dinner {
+        background: #1dd1a1;
+      }
+      .winddown {
+        background: #576574;
+      }
+      .sleep {
+        background: #576574;
+      }
+
+      @media (max-width: 600px) {
+        .event {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .add-btn {
+          margin-top: 8px;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📅 My Weekly Growth Schedule</h1>
+        <p>Optimized for Height, Focus, Health & Frustration Management</p>
+      </header>
+
+      <div class="tabs">
+        <div class="tab active" onclick="openTab('weekdays')">
+          Mon - Fri (Skill Class)
+        </div>
+        <div class="tab" onclick="openTab('weekends')">Sat - Sun (College)</div>
+      </div>
+
+      <!-- WEEKDAYS -->
+      <div id="weekdays" class="tab-content active">
+        <h3>⏰ Monday – Friday (Skill Class 10AM–2PM)</h3>
+        <div class="event worship">
+          <span>6:00 AM – 7:30 AM → Worship (1.5 hrs)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Worship','20240610T060000','20240610T073000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event morning">
+          <span>7:30 AM – 8:00 AM → Hanging + Yoga + Posture</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Morning Routine','20240610T073000','20240610T080000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>8:00 AM – 8:45 AM → Breakfast</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Breakfast','20240610T080000','20240610T084500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event coding">
+          <span>8:45 AM – 9:45 AM → Coding Block 1</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Coding Block 1','20240610T084500','20240610T094500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event morning">
+          <span>9:45 AM – 10:00 AM → Hydrate + Stretch</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Hydrate + Stretch','20240610T094500','20240610T100000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event class">
+          <span>10:00 AM – 2:00 PM → Skill Class</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Skill Class','20240610T100000','20240610T140000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>2:00 PM – 2:50 PM → Lunch</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Lunch','20240610T140000','20240610T145000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event nap">
+          <span>2:50 PM – 3:20 PM → Power Nap</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Power Nap','20240610T145000','20240610T152000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event learn">
+          <span>3:20 PM – 4:20 PM → Self-Learning (Frustration Fix)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Self-Learning','20240610T152000','20240610T162000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event coding">
+          <span>4:20 PM – 5:20 PM → Coding Block 2</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Coding Block 2','20240610T162000','20240610T172000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>5:20 PM – 5:30 PM → Snack + Water</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Snack','20240610T172000','20240610T173000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event workout">
+          <span>5:30 PM – 7:30 PM → Workout (2 Hrs)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Workout','20240610T173000','20240610T193000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event learn">
+          <span>7:30 PM – 8:30 PM → Free / Light Review</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Free Time','20240610T193000','20240610T203000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event dinner">
+          <span>8:30 PM – 9:00 PM → DINNER (MANDATORY)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('DINNER','20240610T203000','20240610T210000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event coding">
+          <span>9:00 PM – 10:00 PM → Coding Block 3</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Coding Block 3','20240610T210000','20240610T220000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event winddown">
+          <span>10:00 PM – 10:15 PM → Wind Down + Hydrate</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Wind Down','20240610T220000','20240610T221500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event sleep">
+          <span>10:30 PM → SLEEP (Lights Out)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('SLEEP','20240610T223000','20240610T223500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+      </div>
+
+      <!-- WEEKENDS -->
+      <div id="weekends" class="tab-content">
+        <h3>⏰ Saturday & Sunday (College 8AM–5PM)</h3>
+        <div class="event worship">
+          <span>5:30 AM – 7:00 AM → Worship (1.5 hrs)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Worship Weekend','20240608T053000','20240608T070000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event morning">
+          <span>7:00 AM – 7:30 AM → Hanging + Yoga + Posture</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Morning Routine','20240608T070000','20240608T073000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>7:30 AM – 8:15 AM → Breakfast</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Breakfast','20240608T073000','20240608T081500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event class">
+          <span>8:00 AM – 5:00 PM → College (Pack snacks!)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('College','20240608T080000','20240608T170000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>5:00 PM – 5:50 PM → Lunch/Dinner</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Lunch/Dinner','20240608T170000','20240608T175000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event nap">
+          <span>5:50 PM – 6:20 PM → Power Nap</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Power Nap','20240608T175000','20240608T182000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event learn">
+          <span>6:20 PM – 7:20 PM → Self-Learning</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Self-Learning','20240608T182000','20240608T192000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event coding">
+          <span>7:20 PM – 8:20 PM → Coding Block 1</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Coding Block 1','20240608T192000','20240608T202000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event meal">
+          <span>8:20 PM – 8:30 PM → Snack + Water</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Snack','20240608T202000','20240608T203000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event dinner">
+          <span>8:30 PM – 9:00 PM → DINNER (MANDATORY)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('DINNER','20240608T203000','20240608T210000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event coding">
+          <span>9:00 PM – 10:00 PM → Coding Block 2</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Coding Block 2','20240608T210000','20240608T220000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event workout">
+          <span>10:00 PM – 12:00 AM → Workout (2 Hrs)</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Workout','20240608T220000','20240609T000000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event winddown">
+          <span>12:00 AM – 12:15 AM → Wind Down</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('Wind Down','20240609T000000','20240609T001500')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+        <div class="event sleep">
+          <span>12:15 AM → SLEEP</span>
+          <button
+            class="add-btn"
+            onclick="addToGoogle('SLEEP','20240609T001500','20240609T002000')"
+          >
+            + Add to Calendar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openTab(tabName) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tab) => tab.classList.remove("active"));
+        document
+          .querySelectorAll(".tab")
+          .forEach((tab) => tab.classList.remove("active"));
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+
+      function addToGoogle(title, start, end) {
+        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+          title
+        )}&dates=${start}/${end}&details=From My Growth Schedule&sf=true&output=xml`;
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>
