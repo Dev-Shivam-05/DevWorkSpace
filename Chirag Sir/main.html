@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chirag Sarangi | UI/UX Designer</title>
+
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* ─── CSS Variables ─── */
+        :root {
+            --cyan: #00f5ff;
+            --cyan-dark: #00c4cc;
+            --purple: #c026d3;
+            --bg-primary: #0f1628;
+            --bg-dark: #0a0f1c;
+            --glass-bg: rgba(13, 17, 25, 0.75);
+            --glass-border: rgba(0, 245, 255, 0.2);
+        }
+
+        /* ─── Global Reset ─── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: #e0f2fe;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        ::selection {
+            background: var(--cyan);
+            color: var(--bg-dark);
+        }
+
+        /* ─── Scrollbar ─── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cyan);
+            border-radius: 10px;
+        }
+
+        /* ─── Utility Classes ─── */
+        .neon-cyan {
+            color: var(--cyan);
+            text-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
+        }
+
+        .text-cyan {
+            color: var(--cyan) !important;
+        }
+
+        .text-cyan-300 {
+            color: #67e8f9 !important;
+        }
+
+        .text-purple {
+            color: var(--purple) !important;
+        }
+
+        .border-cyan {
+            border-color: rgba(0, 245, 255, 0.3) !important;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        /* ─── Glass Effect ─── */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* ─── Navigation ─── */
+        .navbar {
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem !important;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.4s;
+            padding: 0.5rem 0 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--cyan), var(--purple));
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cyan) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom toggler for dark bg */
+        .navbar-toggler {
+            border-color: var(--glass-border);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 245, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        .btn-outline-cyan {
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-cyan:hover {
+            background: var(--cyan);
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.4);
+        }
+
+        /* ─── Hero ─── */
+        .hero-bg {
+            background: linear-gradient(135deg, #0a0f1c 0%, #1e1133 50%, #0a0f1c 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(0, 245, 255, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(192, 38, 211, 0.08) 0%, transparent 40%);
+            animation: heroPulse 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes heroPulse {
+            0% {
+                opacity: 0.6;
+                transform: rotate(0deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(5deg);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            border: 3px solid var(--glass-border);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image img:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 0 50px rgba(0, 245, 255, 0.3);
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid rgba(192, 38, 211, 0.3);
+            border-radius: 1.5rem;
+            z-index: -1;
+        }
+
+        /* ─── Buttons ─── */
+        .btn-cyan {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+            color: var(--bg-dark);
+            font-weight: 700;
+            border: none;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-cyan:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 245, 255, 0.4);
+            color: var(--bg-dark);
+        }
+
+        .btn-ghost {
+            border: 2px solid rgba(0, 245, 255, 0.5);
+            color: var(--cyan);
+            transition: all 0.4s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: translateY(-3px);
+        }
+
+        /* ─── Section Headings ─── */
+        .section-heading {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--cyan), var(--purple));
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* ─── Project Cards ─── */
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.25);
+            border-color: rgba(0, 245, 255, 0.5);
+        }
+
+        .project-card .card-img {
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        .project-card .card-img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card .card-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 15, 28, 0.9));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .card-img-wrapper::after {
+            opacity: 1;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ─── About Section ─── */
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            transition: width 1.5s ease;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ─── Process Section ─── */
+        .process-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--cyan), var(--purple));
+            border-radius: 3px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-dark);
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ─── Testimonials ─── */
+        .testimonial-card {
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--cyan);
+            opacity: 0.2;
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        /* ─── Contact Form ─── */
+        .form-control {
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 0.2rem rgba(0, 245, 255, 0.15);
+            background: rgba(0, 245, 255, 0.03);
+        }
+
+        .form-control::placeholder {
+            color: rgba(224, 242, 254, 0.4);
+        }
+
+        /* ─── Footer ─── */
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            color: var(--cyan);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--cyan);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.3);
+        }
+
+        /* ─── Floating Particles ─── */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--cyan);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20vh) scale(1);
+            }
+        }
+
+        /* ─── Back to Top ─── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 245, 255, 0.5);
+        }
+
+        /* ─── Modal ─── */
+        .modal-content {
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: rgba(10, 15, 28, 0.95);
+                backdrop-filter: blur(20px);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                margin-top: 1rem;
+                border: 1px solid var(--glass-border);
+            }
+
+            .hero-image::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Navigation                                     -->
+    <!-- ────────────────────────────────────────────── -->
+    <nav class="navbar navbar-expand-lg fixed-top glass" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand fw-bold neon-cyan" href="#">CHIRAG<span class="text-purple">.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4 gap-2">
+                    <li class="nav-item"><a class="nav-link text-white fw-medium" href="#work">Work</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium" href="#process">Process</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="#contact" class="btn btn-outline-cyan rounded-pill px-4 py-2">
+                            <i class="fas fa-rocket me-2"></i>Start a Project
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Hero Section                                   -->
+    <!-- ────────────────────────────────────────────── -->
+    <section class="hero-bg d-flex align-items-center pt-5" id="hero">
+        <div class="container position-relative" style="z-index: 1;">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7" data-aos="fade-right" data-aos-delay="200">
+                    <p class="text-cyan mb-3 fw-medium">
+                        <i class="fas fa-circle me-2" style="font-size: 0.5rem; vertical-align: middle;"></i>
+                        Available for new projects
+                    </p>
+                    <h1 class="hero-title fw-bold mb-4 neon-cyan">CHIRAG<br>SARANGI</h1>
+                    <p class="hero-subtitle fw-semibold mb-4">UI/UX Designer &amp; Interaction Specialist</p>
+                    <p class="lead mb-5" style="color: rgba(224, 242, 254, 0.7); max-width: 520px;">
+                        I craft delightful, animated digital experiences that users fall in love with — turning complex
+                        problems into intuitive, beautiful interfaces.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#work" class="btn btn-cyan btn-lg rounded-pill px-5 py-3">
+                            <i class="fas fa-eye me-2"></i>View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-ghost btn-lg rounded-pill px-5 py-3">
+                            Let's Collaborate <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+
+                    <!-- Social links in hero -->
+                    <div class="d-flex gap-3 mt-5" data-aos="fade-up" data-aos-delay="600">
+                        <a href="#" class="text-cyan text-decoration-none" title="Dribbble">
+                            <i class="fab fa-dribbble fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-cyan text-decoration-none" title="Behance">
+                            <i class="fab fa-behance fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-cyan text-decoration-none" title="LinkedIn">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-cyan text-decoration-none" title="GitHub">
+                            <i class="fab fa-github fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center" data-aos="fade-left" data-aos-delay="400">
+                    <div class="hero-image">
+                        <!-- Replace with real photo -->
+                        <img src="https://via.placeholder.com/600x700/1e2937/00f5ff?text=Chirag+Sarangi"
+                            class="img-fluid rounded-4 shadow-lg" alt="Chirag Sarangi — UI/UX Designer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Work / Projects                                -->
+    <!-- ────────────────────────────────────────────── -->
+    <section id="work" class="py-5" style="background: #080c18;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold section-heading">Selected Work</h2>
+                <p class="text-cyan-300 mt-4">Projects that showcase my passion for pixel-perfect, user-centered design
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" data-aos="fade-up" data-aos-delay="100">
+                <button class="btn btn-sm rounded-pill px-4 py-2 filter-btn active" data-filter="all"
+                    onclick="filterProjects('all', this)">All</button>
+                <button class="btn btn-sm rounded-pill px-4 py-2 filter-btn" data-filter="mobile"
+                    onclick="filterProjects('mobile', this)">Mobile</button>
+                <button class="btn btn-sm rounded-pill px-4 py-2 filter-btn" data-filter="web"
+                    onclick="filterProjects('web', this)">Web</button>
+                <button class="btn btn-sm rounded-pill px-4 py-2 filter-btn" data-filter="dashboard"
+                    onclick="filterProjects('dashboard', this)">Dashboard</button>
+            </div>
+
+            <div class="row g-4" id="projects-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- About Section                                  -->
+    <!-- ────────────────────────────────────────────── -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p class="text-cyan fw-medium mb-2"><i class="fas fa-user-astronaut me-2"></i>About Me</p>
+                    <h2 class="display-5 fw-bold mb-4">Crafting Experiences<br>That <span class="text-cyan">Matter</span></h2>
+                    <p class="lead" style="color: rgba(224, 242, 254, 0.8);">
+                        With 2+ years of experience, I specialize in turning complex problems into intuitive, animated
+                        interfaces that drive real business results.
+                    </p>
+                    <p style="color: rgba(224, 242, 254, 0.6);">
+                        I believe great design isn't just beautiful — it's functional, delightful, and memorable. Every
+                        pixel I place, every interaction I design, serves a purpose: to make the user's life easier and
+                        the business more successful.
+                    </p>
+
+                    <!-- Skills -->
+                    <div class="mt-5">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-medium">UI Design</span>
+                                <span class="text-cyan">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" data-width="95" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-medium">UX Research</span>
+                                <span class="text-cyan">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" data-width="88" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-medium">Interaction Design</span>
+                                <span class="text-cyan">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" data-width="92" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-medium">Prototyping</span>
+                                <span class="text-cyan">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" data-width="90" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <!-- Stats Grid -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <div class="glass rounded-4 stat-card">
+                                <div class="stat-number">2+</div>
+                                <p class="text-cyan-300 mb-0 small">Years Experience</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass rounded-4 stat-card">
+                                <div class="stat-number">30+</div>
+                                <p class="text-cyan-300 mb-0 small">Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass rounded-4 stat-card">
+                                <div class="stat-number">15+</div>
+                                <p class="text-cyan-300 mb-0 small">Happy Clients</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass rounded-4 stat-card">
+                                <div class="stat-number">5★</div>
+                                <p class="text-cyan-300 mb-0 small">Average Rating</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Currently Open For -->
+                    <div class="glass p-4 rounded-4" data-aos="fade-up" data-aos-delay="200">
+                        <h5 class="text-cyan mb-3"><i class="fas fa-briefcase me-2"></i>Currently Open For</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3 d-flex align-items-center">
+                                <i class="fas fa-check-circle text-cyan me-3"></i>
+                                Freelance UI/UX Projects
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <i class="fas fa-check-circle text-cyan me-3"></i>
+                                Full-time Design Roles
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <i class="fas fa-check-circle text-cyan me-3"></i>
+                                Design Systems &amp; Animation Work
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-cyan me-3"></i>
+                                Design Mentorship &amp; Workshops
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Process Section (was missing!)                 -->
+    <!-- ────────────────────────────────────────────── -->
+    <section id="process" class="py-5" style="background: #080c18;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold section-heading">My Design Process</h2>
+                <p class="text-cyan-300 mt-4">A proven methodology that delivers results every time</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass p-4 rounded-4 h-100 text-center">
+                        <div class="step-number mx-auto">1</div>
+                        <h5 class="fw-bold mb-3">Discover</h5>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.6);">
+                            Deep-dive into user research, stakeholder interviews, and competitive analysis to define the
+                            problem space.
+                        </p>
+                        <div class="mt-3">
+                            <span class="project-tag">User Research</span>
+                            <span class="project-tag">Interviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass p-4 rounded-4 h-100 text-center">
+                        <div class="step-number mx-auto">2</div>
+                        <h5 class="fw-bold mb-3">Define</h5>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.6);">
+                            Synthesize findings into personas, journey maps, and information architecture that guides
+                            design decisions.
+                        </p>
+                        <div class="mt-3">
+                            <span class="project-tag">Personas</span>
+                            <span class="project-tag">IA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass p-4 rounded-4 h-100 text-center">
+                        <div class="step-number mx-auto">3</div>
+                        <h5 class="fw-bold mb-3">Design</h5>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.6);">
+                            Wireframes → high-fidelity mockups → interactive prototypes with polished micro-interactions
+                            and animations.
+                        </p>
+                        <div class="mt-3">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass p-4 rounded-4 h-100 text-center">
+                        <div class="step-number mx-auto">4</div>
+                        <h5 class="fw-bold mb-3">Deliver</h5>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.6);">
+                            Usability testing, iteration, developer handoff with detailed specs, and post-launch
+                            analytics review.
+                        </p>
+                        <div class="mt-3">
+                            <span class="project-tag">Testing</span>
+                            <span class="project-tag">Handoff</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Testimonials Section (new)                     -->
+    <!-- ────────────────────────────────────────────── -->
+    <section id="testimonials" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold section-heading">What Clients Say</h2>
+                <p class="text-cyan-300 mt-4">Kind words from people I've had the pleasure of working with</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass p-4 rounded-4 h-100 testimonial-card">
+                        <div class="d-flex align-items-center mb-3 mt-3">
+                            <div class="rounded-circle bg-gradient d-flex align-items-center justify-content-center me-3"
+                                style="width:48px;height:48px;background:linear-gradient(135deg,var(--cyan),var(--purple));">
+                                <span class="fw-bold" style="color:var(--bg-dark);">AK</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Ananya K.</h6>
+                                <small class="text-cyan-300">Founder, StyleSphere</small>
+                            </div>
+                        </div>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.7);">
+                            "Chirag transformed our e-commerce platform completely. The attention to micro-interactions
+                            and user flows was outstanding. Conversions went up 65%!"
+                        </p>
+                        <div class="text-warning small">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass p-4 rounded-4 h-100 testimonial-card">
+                        <div class="d-flex align-items-center mb-3 mt-3">
+                            <div class="rounded-circle bg-gradient d-flex align-items-center justify-content-center me-3"
+                                style="width:48px;height:48px;background:linear-gradient(135deg,var(--cyan),var(--purple));">
+                                <span class="fw-bold" style="color:var(--bg-dark);">RM</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Rahul M.</h6>
+                                <small class="text-cyan-300">CTO, NeoPay</small>
+                            </div>
+                        </div>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.7);">
+                            "Working with Chirag was a game-changer. His design thinking and ability to simplify complex
+                            banking flows is rare. Highly recommend!"
+                        </p>
+                        <div class="text-warning small">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass p-4 rounded-4 h-100 testimonial-card">
+                        <div class="d-flex align-items-center mb-3 mt-3">
+                            <div class="rounded-circle bg-gradient d-flex align-items-center justify-content-center me-3"
+                                style="width:48px;height:48px;background:linear-gradient(135deg,var(--cyan),var(--purple));">
+                                <span class="fw-bold" style="color:var(--bg-dark);">SP</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Sara P.</h6>
+                                <small class="text-cyan-300">PM, FocusFlow</small>
+                            </div>
+                        </div>
+                        <p class="small" style="color: rgba(224, 242, 254, 0.7);">
+                            "Chirag doesn't just design — he thinks strategically. Our productivity app's DAU increased
+                            47% after his redesign. Phenomenal work."
+                        </p>
+                        <div class="text-warning small">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Contact Section                                -->
+    <!-- ────────────────────────────────────────────── -->
+    <section id="contact" class="py-5" style="background: #080c18;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold section-heading">Let's Build Something<br>Amazing Together</h2>
+                <p class="text-cyan-300 mt-4">Got a project in mind? Let's talk about how I can help.</p>
+            </div>
+            <div class="row justify-content-center g-5">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="glass p-4 rounded-4 mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3 text-cyan fs-4"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <small class="text-cyan-300">Email</small>
+                                <p class="mb-0 fw-medium">chirag@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass p-4 rounded-4 mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3 text-cyan fs-4"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <small class="text-cyan-300">Location</small>
+                                <p class="mb-0 fw-medium">India (Remote Worldwide)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass p-4 rounded-4">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3 text-cyan fs-4"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <small class="text-cyan-300">Response Time</small>
+                                <p class="mb-0 fw-medium">Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <form class="glass p-5 rounded-4" id="contactForm" onsubmit="return false;">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label small text-cyan-300">Your Name</label>
+                                <input type="text" class="form-control bg-transparent border-cyan text-white"
+                                    placeholder="John Doe" required id="nameInput">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-cyan-300">Email Address</label>
+                                <input type="email" class="form-control bg-transparent border-cyan text-white"
+                                    placeholder="john@example.com" required id="emailInput">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-cyan-300">Project Type</label>
+                            <select class="form-select bg-transparent border-cyan text-white" id="projectType">
+                                <option value="" style="background:var(--bg-dark);">Select a project type</option>
+                                <option value="mobile" style="background:var(--bg-dark);">Mobile App Design</option>
+                                <option value="web" style="background:var(--bg-dark);">Web Design</option>
+                                <option value="dashboard" style="background:var(--bg-dark);">Dashboard / SaaS</option>
+                                <option value="branding" style="background:var(--bg-dark);">Branding</option>
+                                <option value="other" style="background:var(--bg-dark);">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small text-cyan-300">Tell me about your project</label>
+                            <textarea class="form-control bg-transparent border-cyan text-white" rows="5"
+                                placeholder="Describe your project, goals, and timeline..." required
+                                id="messageInput"></textarea>
+                        </div>
+                        <button type="button" onclick="submitForm()"
+                            class="btn btn-cyan w-100 py-3 rounded-pill fw-bold fs-5" id="submitBtn">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Footer                                         -->
+    <!-- ────────────────────────────────────────────── -->
+    <footer class="py-5 glass">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-md-4">
+                    <a class="fs-3 fw-bold neon-cyan text-decoration-none" href="#">CHIRAG<span
+                            class="text-purple">.</span></a>
+                    <p class="small mt-2" style="color: rgba(224, 242, 254, 0.5);">Crafting delighthat digital
+                        experiences.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="footer-social d-flex justify-content-center gap-3">
+                        <a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" title="Behance"><i class="fab fa-behance"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end text-center">
+                    <p class="small mb-0" style="color: rgba(224, 242, 254, 0.4);">
+                        © 2026 Chirag Sarangi<br>Made with <i class="fas fa-heart text-purple"></i> for pixel-perfect
+                        experiences
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Project Modal                                  -->
+    <!-- ────────────────────────────────────────────── -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content border-0" style="background: var(--bg-primary);">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h4 class="modal-title fw-bold" id="modalTitle"></h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4" id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ────────────────────────────────────────────── -->
+    <!-- Scripts                                        -->
+    <!-- ────────────────────────────────────────────── -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ─── Initialize AOS ───
+        AOS.init({
+            duration: 900,
+            once: true,
+            easing: 'ease-out-cubic',
+            offset: 80
+        });
+
+        // ─── Project Data ───
+        const projects = [
+            {
+                title: "NeoPay — Mobile Banking App",
+                desc: "Complete redesign with fluid animations, gesture interactions and delightful micro-moments.",
+                result: "52% increase in user retention",
+                tags: ["mobile", "fintech", "animation"],
+                category: "mobile",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=NeoPay",
+                tools: ["Figma", "Principle", "Lottie"]
+            },
+            {
+                title: "StyleSphere — Fashion E-commerce",
+                desc: "Immersive 3D product explorer with smooth hover animations and personalized shopping flows.",
+                result: "65% uplift in conversions",
+                tags: ["web", "e-commerce", "3D"],
+                category: "web",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=StyleSphere",
+                tools: ["Figma", "Spline", "Framer"]
+            },
+            {
+                title: "FocusFlow — Productivity Dashboard",
+                desc: "Calm interface with smart notification animations and intuitive drag-and-drop task management.",
+                result: "47% increase in daily active users",
+                tags: ["dashboard", "SaaS", "productivity"],
+                category: "dashboard",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=FocusFlow",
+                tools: ["Figma", "Maze", "Hotjar"]
+            },
+            {
+                title: "MediCare — Health App",
+                desc: "Patient-first mobile health platform with appointment booking, telehealth, and medication tracking.",
+                result: "38% reduction in missed appointments",
+                tags: ["mobile", "health", "accessibility"],
+                category: "mobile",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=MediCare",
+                tools: ["Figma", "Protopie", "Miro"]
+            },
+            {
+                title: "LearnHub — EdTech Platform",
+                desc: "Gamified learning experience with progress tracking, quizzes, and social features for students.",
+                result: "73% course completion rate",
+                tags: ["web", "edtech", "gamification"],
+                category: "web",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=LearnHub",
+                tools: ["Figma", "Principle", "Notion"]
+            },
+            {
+                title: "DataViz — Analytics Dashboard",
+                desc: "Enterprise analytics dashboard with real-time data visualization, dark mode, and customizable widgets.",
+                result: "60% faster decision making",
+                tags: ["dashboard", "enterprise", "data"],
+                category: "dashboard",
+                img: "https://via.placeholder.com/1200x700/1e2937/00f5ff?text=DataViz",
+                tools: ["Figma", "D3.js", "Storybook"]
+            }
+        ];
+
+        // ─── Render Projects ───
+        function renderProjects(filter = 'all') {
+            const container = document.getElementById('projects-container');
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+
+            container.innerHTML = filtered.map((project, index) => `
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="project-card glass rounded-4 overflow-hidden h-100" onclick="showProject(${projects.indexOf(project)})">
+                        <div class="card-img-wrapper">
+                            <img src="${project.img}" class="card-img w-100" alt="${project.title}" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">${project.title}</h5>
+                            <p class="small mb-3" style="color: rgba(224, 242, 254, 0.6);">${project.desc}</p>
+                            <p class="text-cyan small fw-semibold mb-3">
+                                <i class="fas fa-chart-line me-1"></i> ${project.result}
+                            </p>
+                            <div>
+                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ─── Filter Projects ───
+        function filterProjects(filter, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProjects(filter);
+        }
+
+        // Style filter buttons
+        const filterBtnStyle = document.createElement('style');
+        filterBtnStyle.textContent = `
+            .filter-btn {
+                background: transparent;
+                border: 1px solid rgba(0,245,255,0.2);
+                color: rgba(224,242,254,0.6);
+                transition: all 0.3s ease;
+            }
+            .filter-btn:hover, .filter-btn.active {
+                background: rgba(0,245,255,0.15);
+                border-color: var(--cyan);
+                color: var(--cyan);
+            }
+        `;
+        document.head.appendChild(filterBtnStyle);
+
+        // ─── Show Project Modal ───
+        function showProject(index) {
+            const p = projects[index];
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalBody').innerHTML = `
+                <img src="${p.img}" class="img-fluid rounded-3 mb-4 w-100" alt="${p.title}">
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h5 class="fw-bold mb-3">Overview</h5>
+                        <p class="lead">${p.desc}</p>
+                        <div class="glass p-3 rounded-3 d-inline-block">
+                            <i class="fas fa-chart-line text-cyan me-2"></i>
+                            <strong class="text-cyan">${p.result}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="fw-bold mb-3 text-cyan">Tools Used</h6>
+                        <div class="mb-4">
+                            ${p.tools.map(t => `<span class="project-tag mb-2">${t}</span>`).join('')}
+                        </div>
+                        <h6 class="fw-bold mb-3 text-cyan">Tags</h6>
+                        <div>
+                            ${p.tags.map(t => `<span class="project-tag mb-2">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <hr style="border-color: rgba(0,245,255,0.1);" class="my-4">
+                <div class="text-center">
+                    <a href="#contact" class="btn btn-cyan rounded-pill px-5 py-3" data-bs-dismiss="modal">
+                        <i class="fas fa-rocket me-2"></i>Start a Similar Project
+                    </a>
+                </div>
+            `;
+            new bootstrap.Modal(document.getElementById('projectModal')).show();
+        }
+
+        // ─── Contact Form ───
+        function submitForm() {
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const message = document.getElementById('messageInput').value.trim();
+            const btn = document.getElementById('submitBtn');
+
+            if (!name || !email || !message) {
+                showToast('⚠️ Please fill in all required fields.', 'warning');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showToast('⚠️ Please enter a valid email address.', 'warning');
+                return;
+            }
+
+            // Simulate sending
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                showToast('✅ Message sent successfully! Chirag will get back to you within 24 hours.', 'success');
+
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    document.getElementById('contactForm').reset();
+                }, 3000);
+            }, 1500);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ─── Toast Notification ───
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; top: 100px; right: 20px; z-index: 9999;
+                padding: 1rem 1.5rem; border-radius: 12px; max-width: 400px;
+                font-size: 0.9rem; font-weight: 500;
+                backdrop-filter: blur(20px); animation: slideIn 0.4s ease;
+                border: 1px solid ${type === 'success' ? 'rgba(16,185,129,0.4)' : 'rgba(251,191,36,0.4)'};
+                background: ${type === 'success' ? 'rgba(16,185,129,0.15)' : 'rgba(251,191,36,0.15)'};
+                color: ${type === 'success' ? '#6ee7b7' : '#fcd34d'};
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.4s ease forwards';
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        // Toast animation
+        const toastStyle = document.createElement('style');
+        toastStyle.textContent = `
+            @keyframes slideIn { from { transform: translateX(100%); opacity:0; } to { transform: translateX(0); opacity:1; } }
+            @keyframes slideOut { from { transform: translateX(0); opacity:1; } to { transform: translateX(100%); opacity:0; } }
+        `;
+        document.head.appendChild(toastStyle);
+
+        // ─── Navbar Scroll Effect ───
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const backBtn = document.getElementById('backToTop');
+
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+        });
+
+        // ─── Animate Skill Bars on Scroll ───
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width + '%';
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-fill').forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // ─── Floating Particles ───
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const count = window.innerWidth < 768 ? 15 : 30;
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.width = particle.style.height = (Math.random() * 4 + 1) + 'px';
+                container.appendChild(particle);
+            }
+        }
+
+        // ─── Initialize ───
+        window.onload = () => {
+            renderProjects();
+            createParticles();
+        };
+    </script>
+</body>
+
+</html>
