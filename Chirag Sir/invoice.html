@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        .invoice-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .08);
+        }
+
+        .brand-bar {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: #fff;
+            border-radius: 12px 12px 0 0;
+            padding: 20px 24px;
+        }
+
+        .brand-bar h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .brand-bar small {
+            opacity: .85;
+        }
+
+        .table thead {
+            background: #f8f9fa;
+        }
+
+        .table th {
+            font-weight: 600;
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: #555;
+        }
+
+        .summary-row td {
+            border: none;
+            font-weight: 600;
+        }
+
+        .grand-total td {
+            font-size: 1.15rem;
+            color: #4e54c8;
+            font-weight: 700;
+            border-top: 2px solid #4e54c8 !important;
+        }
+
+        .btn-add {
+            background: #4e54c8;
+            border: none;
+        }
+
+        .btn-add:hover {
+            background: #3b40a0;
+        }
+
+        .empty-msg {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .invoice-card {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- ===== INVOICE CARD ===== -->
+                <div class="invoice-card mb-4">
+                    <div class="brand-bar d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4>📄 Invoice Generator</h4>
+                            <small id="invoiceDate"></small>
+                        </div>
+                        <span class="badge bg-light text-dark fs-6" id="invoiceNo"></span>
+                    </div>
+
+                    <div class="p-4">
+
+                        <!-- INPUT SECTION -->
+                        <div class="no-print">
+                            <h6 class="fw-bold mb-3">Add Item</h6>
+                            <div class="row g-2 align-items-end">
+                                <div class="col-md-3">
+                                    <label class="form-label small">Item Name *</label>
+                                    <input type="text" id="itemName" class="form-control form-control-sm"
+                                        placeholder="e.g. Web Design">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label small">Qty *</label>
+                                    <input type="number" id="itemQty" class="form-control form-control-sm"
+                                        placeholder="1" min="1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label small">Price (₹) *</label>
+                                    <input type="number" id="itemPrice" class="form-control form-control-sm"
+                                        placeholder="0.00" min="0.01" step="0.01">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label small">Discount %</label>
+                                    <input type="number" id="itemDisc" class="form-control form-control-sm"
+                                        placeholder="0" min="0" max="100" value="0">
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-add btn-sm text-white w-100" onclick="addItem()">+ Add
+                                        Item</button>
+                                </div>
+                            </div>
+                            <div id="errMsg" class="text-danger small mt-2"></div>
+
+                            <!-- Tax Input -->
+                            <div class="row mt-3">
+                                <div class="col-md-3">
+                                    <label class="form-label small">Tax / GST %</label>
+                                    <input type="number" id="taxRate" class="form-control form-control-sm" value="18"
+                                        min="0" max="100" onchange="calculate()">
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <!-- INVOICE TABLE -->
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle mb-0" id="invoiceTable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item</th>
+                                        <th class="text-center">Qty</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-center">Disc%</th>
+                                        <th class="text-end">Total</th>
+                                        <th class="text-center no-print">✕</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <tr id="emptyRow">
+                                        <td colspan="7" class="text-center py-4 empty-msg">No items added yet.</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot id="summaryFoot" class="d-none">
+                                    <tr class="summary-row">
+                                        <td colspan="5" class="text-end">Subtotal:</td>
+                                        <td class="text-end" id="subtotal">₹0.00</td>
+                                        <td class="no-print"></td>
+                                    </tr>
+                                    <tr class="summary-row">
+                                        <td colspan="5" class="text-end text-success">Total Discount:</td>
+                                        <td class="text-end text-success" id="totalDiscount">-₹0.00</td>
+                                        <td class="no-print"></td>
+                                    </tr>
+                                    <tr class="summary-row">
+                                        <td colspan="5" class="text-end">Tax (<span id="taxLabel">18</span>%):</td>
+                                        <td class="text-end" id="taxAmt">₹0.00</td>
+                                        <td class="no-print"></td>
+                                    </tr>
+                                    <tr class="grand-total">
+                                        <td colspan="5" class="text-end">Grand Total:</td>
+                                        <td class="text-end" id="grandTotal">₹0.00</td>
+                                        <td class="no-print"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <!-- ACTION BUTTONS -->
+                        <div class="d-flex gap-2 mt-3 no-print">
+                            <button class="btn btn-outline-danger btn-sm" onclick="resetAll()">🔄 Reset</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">🖨️ Print /
+                                PDF</button>
+                            <button class="btn btn-outline-success btn-sm" onclick="saveInvoice()">💾 Save</button>
+                            <button class="btn btn-outline-info btn-sm" onclick="loadInvoice()">📂 Load</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== DATA =====
+        let items = [];
+
+        // ===== INIT =====
+        (function init() {
+            document.getElementById('invoiceDate').textContent = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+            document.getElementById('invoiceNo').textContent = 'INV-' + Date.now().toString().slice(-6);
+            // Enter key support
+            document.querySelectorAll('#itemName,#itemQty,#itemPrice,#itemDisc').forEach(el => {
+                el.addEventListener('keydown', e => { if (e.key === 'Enter') addItem(); });
+            });
+        })();
+
+        // ===== ADD ITEM =====
+        function addItem() {
+            const err = document.getElementById('errMsg');
+            const name = document.getElementById('itemName').value.trim();
+            const qty = parseFloat(document.getElementById('itemQty').value);
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            const disc = parseFloat(document.getElementById('itemDisc').value) || 0;
+
+            // Validation
+            if (!name) return showErr('Item name is required.');
+            if (!qty || qty <= 0 || !Number.isInteger(qty)) return showErr('Quantity must be a positive whole number.');
+            if (!price || price <= 0) return showErr('Price must be greater than 0.');
+            if (disc < 0 || disc > 100) return showErr('Discount must be 0–100%.');
+            if (price > 99999999 || qty > 99999) return showErr('Value too large.');
+
+            err.textContent = '';
+            items.push({ name, qty, price, disc });
+            clearInputs();
+            render();
+            document.getElementById('itemName').focus();
+        }
+
+        function showErr(msg) { document.getElementById('errMsg').textContent = msg; }
+
+        // ===== REMOVE ITEM =====
+        function removeItem(i) { items.splice(i, 1); render(); }
+
+        // ===== RENDER TABLE =====
+        function render() {
+            const tbody = document.getElementById('tableBody');
+            const foot = document.getElementById('summaryFoot');
+
+            if (items.length === 0) {
+                tbody.innerHTML = '<tr id="emptyRow"><td colspan="7" class="text-center py-4 empty-msg">No items added yet.</td></tr>';
+                foot.classList.add('d-none');
+                return;
+            }
+
+            foot.classList.remove('d-none');
+            tbody.innerHTML = items.map((it, i) => {
+                const raw = it.qty * it.price;
+                const total = raw - (raw * it.disc / 100);
+                return `<tr>
+                <td>${i + 1}</td>
+                <td>${esc(it.name)}</td>
+                <td class="text-center">${it.qty}</td>
+                <td class="text-end">₹${it.price.toFixed(2)}</td>
+                <td class="text-center">${it.disc}%</td>
+                <td class="text-end">₹${total.toFixed(2)}</td>
+                <td class="text-center no-print">
+                    <button class="btn btn-sm btn-outline-danger py-0 px-1" onclick="removeItem(${i})">✕</button>
+                </td>
+            </tr>`;
+            }).join('');
+
+            calculate();
+        }
+
+        // ===== CALCULATE TOTALS =====
+        function calculate() {
+            const tax = parseFloat(document.getElementById('taxRate').value) || 0;
+            let subtotal = 0, totalDisc = 0;
+
+            items.forEach(it => {
+                const raw = it.qty * it.price;
+                totalDisc += raw * it.disc / 100;
+                subtotal += raw;
+            });
+
+            const afterDisc = subtotal - totalDisc;
+            const taxAmt = afterDisc * tax / 100;
+            const grand = afterDisc + taxAmt;
+
+            document.getElementById('subtotal').textContent = '₹' + subtotal.toFixed(2);
+            document.getElementById('totalDiscount').textContent = '-₹' + totalDisc.toFixed(2);
+            document.getElementById('taxLabel').textContent = tax;
+            document.getElementById('taxAmt').textContent = '₹' + taxAmt.toFixed(2);
+            document.getElementById('grandTotal').textContent = '₹' + grand.toFixed(2);
+        }
+
+        // ===== CLEAR INPUTS =====
+        function clearInputs() {
+            ['itemName', 'itemQty', 'itemPrice'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('itemDisc').value = '0';
+            document.getElementById('errMsg').textContent = '';
+        }
+
+        // ===== RESET ALL =====
+        function resetAll() {
+            if (items.length && !confirm('Clear all items?')) return;
+            items = [];
+            clearInputs();
+            document.getElementById('taxRate').value = 18;
+            render();
+        }
+
+        // ===== SAVE / LOAD (localStorage) =====
+        function saveInvoice() {
+            if (!items.length) return alert('Nothing to save.');
+            localStorage.setItem('invoice_items', JSON.stringify(items));
+            localStorage.setItem('invoice_tax', document.getElementById('taxRate').value);
+            alert('Invoice saved!');
+        }
+
+        function loadInvoice() {
+            const data = localStorage.getItem('invoice_items');
+            if (!data) return alert('No saved invoice found.');
+            items = JSON.parse(data);
+            document.getElementById('taxRate').value = localStorage.getItem('invoice_tax') || 18;
+            render();
+            alert('Invoice loaded!');
+        }
+
+        // ===== XSS ESCAPE =====
+        function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    </script>
+
+</body>
+
+</html>
